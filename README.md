@@ -31,6 +31,7 @@ Here is an example across different color spaces using HOG parameters of 'orient
 Here are a few different amounts of HOG orientations, first 1 and then 4:
 ![alt text][image3a]
 ![alt text][image3b]
+
 Eye-opening seeing the directions of the orientations.
 The output features are scaled using the 'StandardScaler()' (detection_pipeline.py, line 77). 
 
@@ -42,6 +43,7 @@ Functions for deriving the color spatial bins and histogram bins  ('bin_spatial(
 ###Sliding Window Search
 
 Just thinking about the relative sizes of cars within the search area we defined, it's unlikely that a tiny car on the horizon is significant, and it seems likely to increase false positives, so we don't want to search scales we don't need. A car taking up an extremely large portion of the frame is a possibility in the case of bad driving or an accident, but is not going to occur here in our test video. Just watching the video, a significant car at any given point could be occupying roughly half to a quarter of the vertical space of our defined search area. Thus, a total search area with a height of 256 pixels, search heights of 64, 96 and 128 would give us a range of windows to search within that frame without wasting space. 
+
 There was also trial and error involved, especially with overlap, seeing which combinations produced the best results. 
 
 The function 'slide_multiple_windows()' (line 242 of helper_functions.py) calls 'slide_window()' (line 152) from Udacity for each window size defined. 
@@ -73,5 +75,8 @@ Here's an example result:
 ####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 This pipeline is likely fragile, as it does not have a good sense of pedestrians, other vehicles, different weather conditions, night driving, etc. Training on and testing with a variety of additional conditions could help make this much more prepared to handle the various objects and obstacles in the real world.
-As for me, I understood the concepts of this project pretty well. These older techniques are less trippy and conceptually heavy than neural networks, but unlike neural networks, where the model was easy to construct but the details of what was going in within it was a challenge to understand, putting these functions together into a viable pipeline, arranging the various color features, figuring out how to distingush shapes, devising a threshold for the heat map had me scratching my head. Help from the Udacity community was vital for this one. I feel good about the final result, but there's no question it could be more robust. I would also like to see the image recognition results of a neural network on this content, and I will explore it if I can find the time. 
+
+As for me, I understood the concepts of this project pretty well. These older techniques are less trippy and conceptually heavy than neural networks, but unlike neural networks, where the model was easy to construct but the details of what was going in within took effort to understand, putting these functions together into a viable pipeline (arranging the various color features, figuring out how to distingush shapes and filter false positives) took a lot of effort. The Udacity community were a big help for this one. 
+
+I feel good about the final result, but there's no question it could be more robust. I would also like to see the image recognition results of a neural network on this content, and I'm excited to explore it when I have more time. 
 
