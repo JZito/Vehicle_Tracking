@@ -1,7 +1,6 @@
 ##Term 1, Project 5
 ---
 The meat of the project exists in helper_functions.py, a collection of functions for classifying and searching the content, and the detection_pipeline.py project, which inputs car footage and outputs video content with bounding boxes drawn around classified vehicles. 
-**Vehicle Detection Project**
 
 [//]: # (Image References)
 [image1a]: ./im_content/hog_color_spaces_plot_8x8.png
