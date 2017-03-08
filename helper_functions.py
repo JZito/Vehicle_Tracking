@@ -174,9 +174,6 @@ def slide_window(img, x_start_stop=[None, None], y_start_stop=[None, None],
     # Initialize a list to append window positions to
     window_list = []
     # Loop through finding x and y window positions
-    # Note: you could vectorize this step, but in practice
-    # you'll be considering windows one by one with your
-    # classifier, so looping makes sense
     for ys in range(ny_windows):
         for xs in range(nx_windows):
             # Calculate window position
@@ -188,8 +185,6 @@ def slide_window(img, x_start_stop=[None, None], y_start_stop=[None, None],
             window_list.append(((startx, starty), (endx, endy)))
     # Return the list of windows
     return window_list
-
-
 
 def search_windows(img, windows, clf, scaler, cspace='RGB', 
                     spatial_size=(32, 32), hist_bins=32, 
@@ -235,15 +230,10 @@ def visualize(fig,rows,cols,imgs,titles):
             
 def draw_boxes(img, bboxes, color=(0, 0, 255), thick=6):
     # make a copy of the image
-
     draw_img = np.copy(img)
     for bbox in bboxes:
         # Draw a rectangle given bbox coordinates
         cv.rectangle(draw_img, bbox[0], bbox[1], color, thick)
-
-    # draw each bounding box
-    #cv.imwrite("bb-" + str(time.time()) + ".png", draw_img)
-
     return draw_img
 
 def slide_multiple_windows(image, sizes = [64,96,128],x_start_stop=[None,None], y_start_stop=[None,None], xy_window=(64,64),overlap=(0.5, 0.5)):
