@@ -1,4 +1,4 @@
-##Term 1, Project 5
+## Term 1, Project 5
 ---
 The meat of the project exists in helper_functions.py, a collection of functions for classifying and searching the content, and the detection_pipeline.py project, which inputs car footage and outputs video content with bounding boxes drawn around classified vehicles. The jupyter notebook is a scratch-pad.
 
@@ -12,9 +12,9 @@ The meat of the project exists in helper_functions.py, a collection of functions
 [video1]: ./project_video.mp4
 
 ---
-###Histogram of Oriented Gradients (HOG)
+### Histogram of Oriented Gradients (HOG)
 
-####1. Explain how (and identify where in your code) you extracted HOG features from the training images.
+#### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
 The code for extracting HOG features is in the get_hog_features() function, defined at line 15 of the helper_functions.py file. It basically wraps around the skimage 'hog()' function, passing our custom parameters. 
 
@@ -40,7 +40,7 @@ There was a lot of playing with results but ultimately I went with an orientatio
 
 Functions for deriving the color spatial bins and histogram bins  ('bin_spatial()' and 'color_hist()') are in the helper_functions.py file, largely the same as provided by Udacity. I trained all the features (color spatial bins, histogram bins and HOGs) with a linear SVC (line 96 of detection_pipeline.py).
 
-###Sliding Window Search
+### Sliding Window Search
 
 Just thinking about the relative sizes of cars within the search area we defined, it's unlikely that a tiny car on the horizon is significant, and it seems likely to increase false positives, so we don't want to search scales we don't need. A car taking up an extremely large portion of the frame is a possibility in the case of bad driving or an accident, but is not going to occur here in our test video. Just watching the video, a significant car at any given point could be occupying roughly half to a quarter of the vertical space of our defined search area. Thus, a total search area with a height of 256 pixels, search heights of 64, 96 and 128 would give us a range of windows to search within that frame without wasting space. 
 
@@ -70,9 +70,9 @@ Here's an example result:
 
 ---
 
-###Discussion
+### Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 This pipeline is likely fragile, as it does not have a good sense of pedestrians, other vehicles, different weather conditions, night driving, etc. Training on and testing with a variety of additional conditions could help make this much more prepared to handle the various objects and obstacles in the real world.
 
